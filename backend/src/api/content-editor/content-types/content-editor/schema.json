@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "content_editors",
+  "info": {
+    "singularName": "content-editor",
+    "pluralName": "content-editors",
+    "displayName": "content",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "richtext"
+    },
+    "description": {
+      "type": "string"
+    },
+    "articleid0": {
+      "type": "date"
+    }
+  }
+}

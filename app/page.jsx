@@ -4,17 +4,12 @@ import { fetchAtrticlesAPI } from "./lib/client";
 
 export default function Home() {
   const [data, setData] = useState(null);
-  const [categories, setCategories] = useState(null);
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchDataFromApi = async () => {
       try {
         // Fetch data from Strapi API
-        const categoriesResp = await fetchAtrticlesAPI("api/categories");
-        setCategories(categoriesResp.data);
-        console.log("categories: ", categoriesResp.data);
         const response = await fetchAtrticlesAPI(
           "api/articles?&populate=*"
         );
@@ -57,7 +52,7 @@ export default function Home() {
                   }
                   alt="scholarships"
                 />
-                <p>{val.attributes.desc}</p>
+                <p className="mt-20">{val.attributes.desc}</p>
               </div>
             )
           )}

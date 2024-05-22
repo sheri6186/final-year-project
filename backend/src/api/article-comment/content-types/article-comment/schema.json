@@ -4,7 +4,8 @@
   "info": {
     "singularName": "article-comment",
     "pluralName": "article-comments",
-    "displayName": "ArticleComment"
+    "displayName": "ArticleComment",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -22,6 +23,9 @@
     },
     "user_id": {
       "type": "string"
+    },
+    "user_name": {
+      "type": "text"
     }
   }
 }

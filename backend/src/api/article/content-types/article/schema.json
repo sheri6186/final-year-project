@@ -34,6 +34,12 @@
       "relation": "manyToMany",
       "target": "api::category.category",
       "mappedBy": "articles"
+    },
+    "article_comment": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::article-comment.article-comment",
+      "mappedBy": "article_id"
     }
   }
 }

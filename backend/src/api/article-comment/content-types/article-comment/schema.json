@@ -17,14 +17,14 @@
     },
     "article_id": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::article.article",
-      "inversedBy": "article_comment"
+      "inversedBy": "article_comments"
     },
-    "user_id": {
+    "addedById": {
       "type": "string"
     },
-    "user_name": {
+    "addedByName": {
       "type": "text"
     }
   }

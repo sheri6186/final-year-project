@@ -1,19 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useUser } from "@clerk/clerk-react";
+
+import { fetchAtrticleComments, createComment } from "../lib/client";
 
 const ArticleCard = ({ val, index }) => {
   const { isSignedIn, user } = useUser();
-  const [comments, setComments] = useState({});
+  const [comments, setComments] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchDataFromApi = async () => {
+    try {
+      // Fetch data from Strapi API
+      const response = await fetchAtrticleComments(val.id);
+      setComments(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchDataFromApi();
+  }, []);
 
   // Function to add a comment
-  const addComment = (articleId, commentText) => {
-    setComments((prevComments) => {
-      const articleComments = prevComments[articleId] || [];
-      return {
-        ...prevComments,
-        [articleId]: [...articleComments, commentText],
-      };
-    });
+  const addComment = async (articleId, commentText) => {
+    const data = {
+      addedById: user.id,
+      addedByName: user.firstName + " " + user.lastName,
+      articleId: articleId,
+      text: commentText,
+    };
+
+    await createComment(data);
+    await fetchDataFromApi();
   };
 
   return (
@@ -31,12 +52,23 @@ const ArticleCard = ({ val, index }) => {
 
       {/* Display comments for each article */}
       <div className="comments mt-4">
-        <h3 className="text-lg font-bold">Comments:</h3>
-        {(comments[val.id] || []).map((comment, commentIndex) => (
-          <div key={commentIndex} className="p-2 border-b">
-            {comment}
-          </div>
-        ))}
+        <h3 className="text-lg font-bold mb-4">Comments:</h3>
+        <div className="space-y-4">
+          {comments.map((comment, commentIndex) => (
+            <div
+              key={commentIndex}
+              className="p-4 border rounded-lg shadow-sm bg-white"
+            >
+              <p className="text-gray-800">{comment.attributes.text}</p>
+              <div className="flex justify-between text-sm text-gray-500 mt-2">
+                <span>Added by: {comment.attributes.addedByName}</span>
+                <span>
+                  {new Date(comment.attributes.createdAt).toLocaleString()}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
 
         {/* Add a comment input */}
         {isSignedIn && (

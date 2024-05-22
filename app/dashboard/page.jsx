@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { fetchAtrticlesAPI } from "../lib/client";
-import { useUser } from "@clerk/clerk-react";
 import ArticleCard from "./../components/article-card";
 
 export default function Home() {

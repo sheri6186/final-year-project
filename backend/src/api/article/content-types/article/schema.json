@@ -39,7 +39,7 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::article-comment.article-comment",
-      "mappedBy": "article_id"
+      "mappedBy": "articleId"
     }
   }
 }

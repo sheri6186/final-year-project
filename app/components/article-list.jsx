@@ -18,9 +18,7 @@ const ArticleList = ({ loading, data, dashbord = false }) => {
         {loading ? (
           <p className="text-center text-gray-500 col-span-full">Loading...</p>
         ) : data.length ? (
-          data.map((val, index) => (
-            <ArticleCard key={index} val={val} index={index} />
-          ))
+          data.map((val) => <ArticleCard val={val} />)
         ) : (
           <p className="text-center text-gray-500 col-span-full">
             No data available

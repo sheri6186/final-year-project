@@ -3,10 +3,9 @@ import { useUser } from "@clerk/clerk-react";
 
 import { fetchAtrticleComments, createComment } from "../lib/client";
 
-const ArticleCard = ({ val, index }) => {
+const ArticleCard = ({ val }) => {
   const { isSignedIn, user } = useUser();
   const [comments, setComments] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [showComments, setShowComments] = useState(false);
 
   const fetchDataFromApi = async () => {
@@ -14,10 +13,8 @@ const ArticleCard = ({ val, index }) => {
       // Fetch data from Strapi API
       const response = await fetchAtrticleComments(val.id);
       setComments(response.data);
-      setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
-      setLoading(false);
     }
   };
 

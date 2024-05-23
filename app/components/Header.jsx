@@ -1,14 +1,8 @@
 import Link from "next/link";
 import { UserButton, auth } from "@clerk/nextjs";
-import { fetchAtrticlesAPI } from "../lib/client";
 
 const Header = async ({ username }) => {
   const { userId } = auth();
-  // let resp = await fetchAtrticlesAPI(
-  //   "http://localhost:1337/api/categories/"
-  // );
-  // let categories = resp.data;
-  // console.log(categories);
   return (
     <nav className="flex items-center justify-between px-6 py-4 mb-5  bg-red-700">
       <div className="flex items-center">

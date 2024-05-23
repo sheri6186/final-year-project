@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { fetchAtrticlesAPI } from "../lib/client.js";
-import ArticleCard from "./../components/article-card";
+import ArticleList from "./../components/article-list";
 
 const socialpage = () => {
   const [data, setData] = useState(null);
@@ -29,22 +29,7 @@ const socialpage = () => {
 
     fetchDataFromApi();
   }, []);
-  return (
-    <>
-      <h1 className="font-bold text-2xl px-2  mb-4">Social News</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {loading ? (
-          <p>Loading...</p>
-        ) : data ? (
-          data.map((val, index) => (
-            <ArticleCard key={index} val={val} index={index} />
-          ))
-        ) : (
-          <p>No data available</p>
-        )}
-      </div>
-    </>
-  );
+  return <ArticleList loading={loading} data={data} />;
 };
 
 export default socialpage;

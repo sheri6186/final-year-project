@@ -2,7 +2,7 @@
 // Import React, useEffect, useState, and fetchAtrticlesAPI function
 import React, { useEffect, useState } from "react";
 import { fetchAtrticlesAPI } from "../lib/client.js";
-import ArticleCard from "./../components/article-card";
+import ArticleList from "./../components/article-list";
 
 const EducationPage = () => {
   // Define state variables for data, categories, and loading
@@ -40,22 +40,7 @@ const EducationPage = () => {
     fetchDataFromApi();
   }, []);
 
-  return (
-    <>
-      <h1 className="font-bold text-2xl px-2 mt-0 mb-4">Education News</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {loading ? (
-          <p>Loading...</p>
-        ) : data ? (
-          data.map((val, index) => (
-            <ArticleCard key={index} val={val} index={index} />
-          ))
-        ) : (
-          <p>No data available</p>
-        )}
-      </div>
-    </>
-  );
+  return <ArticleList loading={loading} data={data} />;
 };
 
 export default EducationPage;

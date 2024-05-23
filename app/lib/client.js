@@ -1,4 +1,4 @@
-// lib/Script-Client.js
+// lib/client.js
 
 import axios from "axios";
 

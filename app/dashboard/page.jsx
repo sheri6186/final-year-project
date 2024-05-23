@@ -32,11 +32,13 @@ export default function Home() {
         This is the dashboard for the news article website. Please subscribe to
         the latest news articles and leave comments on articles.
       </p>
-      <div className="flex flex-wrap">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {loading ? (
           <p>Loading...</p>
         ) : data ? (
-          data.map((val, index) => <ArticleCard val={val} index={index} />)
+          data.map((val, index) => (
+            <ArticleCard key={index} val={val} index={index} />
+          ))
         ) : (
           <p>No data available</p>
         )}

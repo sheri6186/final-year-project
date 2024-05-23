@@ -7,6 +7,7 @@ const ArticleCard = ({ val, index }) => {
   const { isSignedIn, user } = useUser();
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showComments, setShowComments] = useState(false);
 
   const fetchDataFromApi = async () => {
     try {
@@ -38,37 +39,50 @@ const ArticleCard = ({ val, index }) => {
   };
 
   return (
-    <div key={index} className="m-5 p-3 h-100 w-1/2 mb-2">
-      <div>{val.attributes.title}</div>
+    <div className="w-full p-6 bg-white rounded-lg shadow-lg">
+      <h1 className="text-3xl font-bold mb-6 text-gray-800">
+        {val.attributes.title}
+      </h1>
       <img
-        className="h-1000 w-1/2 mt-10"
+        className="w-full h-auto rounded-lg mb-6"
         src={
           "http://localhost:1337" + val.attributes.image.data?.attributes?.url
         }
-        alt={val.attributes.title}
+        alt="scholarships"
       />
-      <div className="mt-10">{val.attributes.desc}</div>
-      <div>{new Date(val.attributes.createdAt).toLocaleDateString()}</div>
+      <p className="mt-4 text-gray-700 leading-relaxed">
+        {val.attributes.desc}
+      </p>
+      <div className="mt-6 text-sm text-gray-500">
+        {new Date(val.attributes.createdAt).toLocaleString()}
+      </div>
 
       {/* Display comments for each article */}
       <div className="comments mt-4">
-        <h3 className="text-lg font-bold mb-4">Comments:</h3>
-        <div className="space-y-4">
-          {comments.map((comment, commentIndex) => (
-            <div
-              key={commentIndex}
-              className="p-4 border rounded-lg shadow-sm bg-white"
-            >
-              <p className="text-gray-800">{comment.attributes.text}</p>
-              <div className="flex justify-between text-sm text-gray-500 mt-2">
-                <span>Added by: {comment.attributes.addedByName}</span>
-                <span>
-                  {new Date(comment.attributes.createdAt).toLocaleString()}
-                </span>
+        <h3
+          className="text-lg font-bold mb-4 cursor-pointer"
+          onClick={() => setShowComments(!showComments)}
+        >
+          Comments ({comments.length}): {showComments ? "Hide" : "Show"}
+        </h3>
+        {showComments && (
+          <div className="space-y-4">
+            {comments.map((comment, commentIndex) => (
+              <div
+                key={commentIndex}
+                className="p-4 border rounded-lg shadow-sm bg-white"
+              >
+                <p className="text-gray-800">{comment.attributes.text}</p>
+                <div className="flex justify-between text-sm text-gray-500 mt-2">
+                  <span>Added by: {comment.attributes.addedByName}</span>
+                  <span>
+                    {new Date(comment.attributes.createdAt).toLocaleString()}
+                  </span>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         {/* Add a comment input */}
         {isSignedIn && (

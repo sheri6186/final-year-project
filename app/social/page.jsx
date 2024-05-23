@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { fetchAtrticlesAPI } from "../lib/client.js";
+import ArticleCard from "./../components/article-card";
 
 const socialpage = () => {
   const [data, setData] = useState(null);
@@ -30,33 +31,18 @@ const socialpage = () => {
   }, []);
   return (
     <>
-    <h1 className="font-bold text-2xl px-2  mb-4">Social News</h1>
-     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-10">
-     
-      {loading ? (
-        <p>Loading...</p>
-      ) : data ? (
-        data.map((val, index) => (
-          <div
-            key={index}
-            className="flex flex-col bg-white rounded-lg overflow-hidden shadow-md"
-          >
-            <img
-              className="w-full "
-              src={"http://localhost:1337" + val.attributes.image.data?.attributes?.url}
-              alt={val.attributes.title}
-            />
-            <div className="p-4 w-full">
-              <h2 className="text-xl font-semibold mb-2">{val.attributes.title.relegion}</h2>
-              <p className="text-sm">{val.attributes.desc}</p>
-              <p className="text-sm mt-2">{val.attributes.createdAt}</p>
-            </div>
-          </div>
-        ))
-      ) : (
-        <p>No data available</p>
-      )}
-    </div>
+      <h1 className="font-bold text-2xl px-2  mb-4">Social News</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {loading ? (
+          <p>Loading...</p>
+        ) : data ? (
+          data.map((val, index) => (
+            <ArticleCard key={index} val={val} index={index} />
+          ))
+        ) : (
+          <p>No data available</p>
+        )}
+      </div>
     </>
   );
 };

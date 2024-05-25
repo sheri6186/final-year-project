@@ -2,18 +2,21 @@ import React from "react";
 import ArticleCard from "./article-card"; // Adjust the import path as needed
 
 const ArticleList = ({ loading, data, dashbord = false }) => {
+  const language = localStorage.getItem("language");
+
   return (
     <div className="container mx-auto px-4 py-8">
       {dashbord && (
         <h1 className="font-bold text-3xl md:text-4xl text-center md:text-left px-2 mt-0 mb-6">
-          Welcome
+          {language == "en" ? "Welcome" : "خوش آمدید"}
         </h1>
       )}
 
       {dashbord && (
         <p className="mb-5">
-          This is the dashboard for the news article website. Please subscribe
-          to the latest news articles and leave comments on articles.
+          {language == "en"
+            ? "This is the dashboard for the news article website. Please subscribe to the latest news articles and leave comments on articles."
+            : "یہ نیوز آرٹیکل ویب سائٹ کا ڈیش بورڈ ہے۔ براہ کرم تازہ ترین خبروں کے مضامین کو سبسکرائب کریں اور مضامین پر تبصرے چھوڑیں۔"}
         </p>
       )}
 

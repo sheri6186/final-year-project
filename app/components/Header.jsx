@@ -27,20 +27,20 @@ const Header = ({ username }) => {
       <div className="flex items-center">
         <Link href="/">
           <div className="text-lg font-bold text-white uppercase">
-            Articles Website
+            {language == "en" ? "News Articles" : "تازہ خبریں"}
           </div>
         </Link>
         <Link href="/social" className="text-white hover:text-black mx-4">
-          Social News
+          {language == "en" ? "Social News" : "سماجی خبریں"}
         </Link>
         <Link href="/education" className="text-white hover:text-black mx-4">
-          Education News
+          {language == "en" ? "Education News" : "تعلیمی خبریں"}
         </Link>
         <Link href="/relegion" className="text-white hover:text-black mx-4">
-          Religion News
+          {language == "en" ? "Religious News" : "مذہبی خبریں"}
         </Link>
         <Link href="/addnews" className="text-white hover:text-black mx-4">
-          Add News
+          {language == "en" ? "Add News" : "خبریں شامل کریں"}
         </Link>
       </div>
       <div className="flex items-center text-white">

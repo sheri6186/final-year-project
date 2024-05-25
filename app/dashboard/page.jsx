@@ -11,8 +11,9 @@ export default function Home() {
     const fetchDataFromApi = async () => {
       try {
         // Fetch data from Strapi API
+        const language = localStorage.getItem("language");
         const response = await fetchAtrticlesAPI(
-          "api/articles?filters[categories][id][$in]=1&populate=*"
+          `api/articles?_locale=${language}&filters[categories][id][$in]=1&populate=*`
         );
         setData(response.data);
         setLoading(false);

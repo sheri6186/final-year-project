@@ -15,9 +15,10 @@ const socialpage = () => {
         // Fetch data from Strapi API
         const categoriesResp = await fetchAtrticlesAPI("api/categories");
         setCategories(categoriesResp.data);
-        console.log("categories: ", categoriesResp.data);
+        const language = localStorage.getItem("language");
+
         const response = await fetchAtrticlesAPI(
-          "api/articles?filters[categories][id][$in]=1&populate=*"
+          `api/articles?_locale=${language}&filters[categories][id][$in]=1&populate=*`
         );
         setData(response.data);
         setLoading(false);

@@ -15,9 +15,10 @@ const relegionpage = () => {
         // Fetch data from Strapi API
         const categoriesResp = await fetchAtrticlesAPI("api/categories/3");
         setCategories(categoriesResp.data);
-        console.log("categories: ", categoriesResp.data);
+        
+        const language = localStorage.getItem("language");
         const response = await fetchAtrticlesAPI(
-          "api/articles?filters[categories][id][$in]=3&populate=*"
+          `api/articles?_locale=${language}&filters[categories][id][$in]=3&populate=*`
         );
         setData(response.data);
         setLoading(false);

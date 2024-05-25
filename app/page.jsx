@@ -8,10 +8,14 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+
     const fetchDataFromApi = async () => {
       try {
         // Fetch data from Strapi API
-        const response = await fetchAtrticlesAPI("api/articles?&populate=*");
+        const language = localStorage.getItem("language");
+        const response = await fetchAtrticlesAPI(
+          `api/articles?_locale=${language}&populate=*`
+        );
         setData(response.data);
         setLoading(false);
       } catch (error) {

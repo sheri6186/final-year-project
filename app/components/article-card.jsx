@@ -35,10 +35,15 @@ const ArticleCard = ({ val }) => {
     await fetchDataFromApi();
   };
 
+  const language = localStorage.getItem("language");
+
   return (
     <div className="w-full p-6 bg-white rounded-lg shadow-lg">
       <h1 className="text-3xl font-bold mb-6 text-gray-800">
-        {val.attributes.title}
+        {language == "ur"
+          ? val.attributes?.localizations?.data[0]?.attributes?.title ||
+            val.attributes.title
+          : val.attributes.title}
       </h1>
       <img
         className="w-full h-auto rounded-lg mb-6"
@@ -48,7 +53,10 @@ const ArticleCard = ({ val }) => {
         alt="scholarships"
       />
       <p className="mt-4 text-gray-700 leading-relaxed">
-        {val.attributes.desc}
+        {language == "ur"
+          ? val.attributes?.localizations?.data[0]?.attributes?.desc ||
+            val.attributes.desc
+          : val.attributes.desc}
       </p>
       <div className="mt-6 text-sm text-gray-500">
         {new Date(val.attributes.createdAt).toLocaleString()}

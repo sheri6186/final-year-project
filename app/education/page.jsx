@@ -20,8 +20,9 @@ const EducationPage = () => {
         console.log("Category:", category);
 
         // Fetch articles belonging to category ID 4 from Strapi API
+        const language = localStorage.getItem("language");
         const articlesResponse = await fetchAtrticlesAPI(
-          `api/articles?filters[categories][id]=${category.id}&populate=*`
+          `api/articles?_locale=${language}&filters[categories][id]=${category.id}&populate=*`
         );
         const articles = articlesResponse.data;
         console.log("Articles:", articles);

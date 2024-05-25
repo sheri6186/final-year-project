@@ -15,5 +15,12 @@ module.exports = ({ env }) => ({
       },
     },
   },
+  i18n: {
+    enabled: true,
+    config: {
+      locales: ['en', 'fr', 'ur'], // List your supported locales here
+      defaultLocale: 'en',
+    },
+  },
   // ...
 });

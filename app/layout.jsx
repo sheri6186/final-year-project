@@ -1,6 +1,7 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { ClerkProvider } from '@clerk/nextjs';
+import Footer from './components/Footer'
 
 import Header from './components/Header';
 
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
               <div className='mt-20'>{children}</div>
             </div>
           </main>
+          <Footer/>
         </body>
       </html>
     </ClerkProvider>

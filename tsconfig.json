@@ -21,14 +21,17 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "strictNullChecks": true
   },
   "include": [
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "app/relegion/page.jsx", "lib/Script-Client.js"  ],
+    "**/*.tsx",
+    "app/relegion/page.jsx",
+    "lib/Script-Client.js"
+  ],
   "exclude": [
     "node_modules"
   ]

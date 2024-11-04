@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"; // Assuming you're using react-router for routing
 import { useUser } from "@clerk/clerk-react";
 import { fetchArticleDetails, fetchAtrticleComments, createComment } from "../lib/client"; // Adjust the import paths as necessary
+import SubscribeButton from "../../components/SubscribeButton";// Import the button
+
 
 const ArticleDetails = () => {
   const { articleId } = useParams();
@@ -68,6 +70,7 @@ const ArticleDetails = () => {
         >
           Comments ({comments.length}): {showComments ? "Hide" : "Show"}
         </h3>
+        
         {showComments && (
           <div className="space-y-4">
             {comments.map((comment, commentIndex) => (
@@ -98,6 +101,10 @@ const ArticleDetails = () => {
             }}
           />
         )}
+      </div>
+      <div>
+      <SubscribeButton />
+
       </div>
     </div>
   );

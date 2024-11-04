@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchAtrticlesAPI } from "./lib/client";
 import ArticleList from "./components/article-list";
-
+import SubscribeForm from "./components/subscribeForm"
 export default function Home() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -27,5 +27,7 @@ export default function Home() {
     fetchDataFromApi();
   }, []);
 
-  return <ArticleList loading={loading} data={data} dashbord={true} />;
+  return (<><ArticleList loading={loading} data={data} dashbord={true} />
+  <subscribeForm />
+  </>);
 }

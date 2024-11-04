@@ -16,6 +16,10 @@ module.exports = [
             'res.cloudinary.com',
           ],
           upgradeInsecureRequests: null,
+        },settings: {
+          cors: {
+            origin: ['http://localhost:3000'], // or your domain if deployed
+          },
         },
       },
     },

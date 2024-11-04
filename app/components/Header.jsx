@@ -47,10 +47,14 @@ const Header = ({ username }) => {
         <select
           value={language}
           onChange={handleLanguageChange}
-          className="bg-red-700 text-white border-none outline-none mx-4"
+          className="bg-red-700 text-white border-2 border-white outline-none mx-10 p-2 rounded-lg transition duration-300 ease-in-out hover:bg-red-800"
         >
-          <option value="en">English</option>
-          <option value="ur">Urdu</option>
+          <option value="en" className="bg-white text-black">
+            English
+          </option>
+          <option value="ur" className="bg-white text-black">
+            Urdu
+          </option>
         </select>
         {!isSignedIn && (
           <>
